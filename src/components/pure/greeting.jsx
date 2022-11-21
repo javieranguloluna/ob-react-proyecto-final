@@ -16,7 +16,7 @@ class Greeting extends Component {
         return (
         <div>
             <h1>
-                Hola { this.props.name } !
+                Hola { this.props.name } desde componente de clase!
             </h1>
             <h2>
                 Tu edad es de { this.state.age } años.
@@ -35,6 +35,6 @@ class Greeting extends Component {
 
 Greeting.protoTypes = {
     name: PropTypes.string
-};
+}
 
-export default Greeting;
+export default Greeting

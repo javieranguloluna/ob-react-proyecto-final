@@ -15,7 +15,7 @@ const TaskListComponent = () => {
     )
     
     // Estado del componente
-    const [tasks, setTasks] = useState(defaultTask)
+    const [tasks, setTasks] = useState([defaultTask])
     const [loading, setLoading] = useState(true)  
 
     // Control del ciclo de vida del componente

@@ -7,7 +7,7 @@ import '../../styles/task.scss'
 import { Task } from './../../models/task.class';
 import { LEVELS } from '../../models/levels.enum';
 
-const TaskComponent = ({task}) => {
+const TaskComponent = ({ task, actions }) => {
 
     useEffect(() => {
         console.log('Created Task')
@@ -17,7 +17,7 @@ const TaskComponent = ({task}) => {
     }, [task])
 
     const taskCompletedIcon = () => {
-        let cn = 'bi-toggle-'
+        let cn = 'task-action bi-toggle-'
         let color = ''
         if (task.completed) {
             cn += 'on'
@@ -27,7 +27,7 @@ const TaskComponent = ({task}) => {
             color = 'grey'
         }
         return (
-            <i className={cn} style={{ color }}></i>
+            <i  onClick={ () => actions.complete(task) } className={cn} style={{ color }}></i>
         )
     }
     const taskLevelBadge = () => {
@@ -60,13 +60,20 @@ const TaskComponent = ({task}) => {
             </td>
             <td className="align-middle">
                 { taskCompletedIcon() }
+                <i onClick={() => actions.remove(task)} className="bi-trash task-action" style={{color: 'tomato'}}></i>
             </td>
         </tr>
     )
 }
 
+const actionsType = {
+    complete: PropTypes.func.isRequiered,
+    remove: PropTypes.func.isRequiered
+}
+
 TaskComponent.propTypes = {
-    task: PropTypes.instanceOf(Task)
+    task: PropTypes.instanceOf(Task).isRequired,
+    actions: PropTypes.shape(actionsType)
 }
 
 export default TaskComponent
